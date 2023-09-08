@@ -56,7 +56,7 @@ void display(){
     Node* current = Top;
     while(current!=nullptr){
         cout<<current->data<<" ";
-        current = current->next;
+        current= current->next;
     }
     cout<<endl;
 }
