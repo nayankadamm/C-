@@ -50,10 +50,4 @@ int main()
        enQueue(&Q,6);
        deQueue(&Q);
        deQueue(&Q);
-
-
-
-
-
-
 }
