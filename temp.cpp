@@ -1,52 +1,58 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <string>
-
-
+#include<iostream>
 using namespace std;
-int findAnagrams(int input1[],int input2){
-   vector<int>arr;
-   for(int i=0;i<input2;i++){
-       arr.push_back(input1[i]);
-   }
-    vector<string>arr2;
-    string str="";
-   // int flag=0;
-    int count=0;
-    for (int num : arr) {
-        string numStr = to_string(num);
-        sort(numStr.begin(), numStr.end());
-        arr2.push_back(numStr);
-        
+struct Node{
+    int data;
+    Node* next;
+
+};
+class L_list{
+    private:
+    Node* head;
+    public:
+    L_list(){
+        head = nullptr;  
     }
-    int flag=0;
-    for (int i = 0; i < arr2.size(); ++i) {
-        for (int j = i + 1; j <arr2.size(); ++j) {
-            if (arr2[i] == arr2[j])
-            {
-                str = arr2[i];
-                flag=1;
-            break;
-                return 0; // Exit the program after finding the first repeating number
+
+    void insert(int value){
+        Node* newnode = new Node;
+        newnode->data = value;
+        newnode->next = nullptr;
+
+        if(head==nullptr){
+            head = newnode;
+        }
+        else{
+            Node* current = head;
+            while(current->next!=nullptr){
+                current= current->next;
             }
-        }
-        if(flag==1){
-            break;
+            current->next = newnode;
         }
     }
-   
-    for(int i=0;i<arr2.size();i++){
-        if(str==arr2[i]){
-            count++;
+
+    void display(){
+        Node* current = head;
+        while(current!=nullptr){
+            cout<<current->data<<" ";
+            current= current->next;
         }
+        cout<<endl;
     }
-  
-    return count;
-}
-int main() {
+
+
+};
+int main(){
+    L_list l;
+    l.insert(10);
+     l.insert(11);
+      l.insert(12);
+       l.insert(13);
+       l.display();
+       
+        
+
     
-    int arr[] = {121, 102, 205, 136, 112, 921, 911, 431, 211, 456, 779};
-    int size = 11;
-    cout<<findAnagrams(arr,size);
+    
+
+
 }
