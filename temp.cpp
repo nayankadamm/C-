@@ -1,58 +1,84 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-struct Node{
+struct Node
+{
     int data;
-    Node* next;
-
+    Node *next;
+    Node *pre;
 };
-class L_list{
-    private:
-    Node* head;
-    public:
-    L_list(){
-        head = nullptr;  
+class dList
+{
+private:
+    Node *head;
+
+public:
+    dList()
+    {
+        head = nullptr;
     }
 
-    void insert(int value){
-        Node* newnode = new Node;
-        newnode->data = value;
+    void insert(int value)
+    {
+        Node *newnode = new Node;
         newnode->next = nullptr;
+        newnode->pre = nullptr;
+        newnode->data = value;
 
-        if(head==nullptr){
+        if (head == nullptr)
+        {
             head = newnode;
         }
-        else{
-            Node* current = head;
-            while(current->next!=nullptr){
-                current= current->next;
+        else
+        {
+            Node *current = head;
+            while (current->next != nullptr)
+            {
+                current = current->next;
             }
             current->next = newnode;
+            newnode->pre = current;
         }
     }
-
-    void display(){
-        Node* current = head;
-        while(current!=nullptr){
-            cout<<current->data<<" ";
-            current= current->next;
-        }
-        cout<<endl;
+    void insertHead(int value)
+    {
+        Node *newnode = new Node;
+        newnode->data = value;
+        newnode->pre = nullptr;
+        newnode->next = head;
+        head = newnode;
     }
 
+    void insertTail(int value)
+    {
+        Node *newnode = new Node;
+        newnode->next = nullptr;
+        newnode->pre = nullptr;
+        newnode->data = value;
+        Node *current = head;
+        while (current->next != nullptr)
+        {
+            current = current->next;
+        }
+        current->next = newnode;
+        newnode->pre = current;
+    }
 
+    void insertAt(int value, int pos)
+    {
+        Node *newnode = new Node;
+        newnode->data = value;
+        newnode->pre = nullptr;
+        newnode->next = nullptr;
+
+        Node *current = head;
+        int i = 1;
+        while (i < pos - 1)
+        {
+            current = current->next;
+            i++;
+        }
+        newnode->next = current->next;
+        current->next = newnode;
+        newnode->pre = current;
+    }
 };
-int main(){
-    L_list l;
-    l.insert(10);
-     l.insert(11);
-      l.insert(12);
-       l.insert(13);
-       l.display();
-       
-        
-
-    
-    
-
-
-}

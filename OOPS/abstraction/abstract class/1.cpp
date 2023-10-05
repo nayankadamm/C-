@@ -22,6 +22,4 @@ int main()
     circle c(10);
     s1= &c;
     s1->draw();
-    
-
 }
